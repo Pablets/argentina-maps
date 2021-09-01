@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {geoEquirectangular, geoMercator, geoPath} from 'd3-geo';
+import * as d3 from 'd3';
 import {zoom} from 'd3-zoom';
 import {feature} from 'topojson-client';
 import styles from '../styles/LimitesProvinciales.module.css';
@@ -37,14 +38,14 @@ const cities = [
 	{name: 'Lima', coordinates: [-77.0428, -12.0464], population: 10750000}
 ];
 
-let w = 800;
-let h = 600;
+let w = 1000;
+let h = 1000;
 
-const projection = geoMercator()
-	.center([-58, -34]) // set centre to further North as we are cropping more off bottom of map
-	.scale([w / (2 * Math.PI)]) // scale to fit group width
+const projection = d3
+	.geoEquirectangular()
+	.center([0, -100]) // set centre to further North as we are cropping more off bottom of map
+	.scale([w / (1 * Math.PI)]) // scale to fit group width
 	.translate([w / 2, h / 2]); // ensure centred in group
-
 // variables for catching min and max zoom factors
 var minZoom;
 var maxZoom;
